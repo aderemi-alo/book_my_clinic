@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "71292641552",
+    "project_id": "bookmyclinic-5f034",
+    "storage_bucket": "bookmyclinic-5f034.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71292641552:android:587f44964dcc8966c40595",
+        "android_client_info": {
+          "package_name": "com.example.book_my_clinic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgDcJWcNo0_lpxs6003n8PqxhXUkZUItY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
