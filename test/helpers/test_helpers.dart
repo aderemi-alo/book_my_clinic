@@ -2,6 +2,10 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:book_my_clinic/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:book_my_clinic/services/authentication_service.dart';
+import 'package:book_my_clinic/services/appointment_service.dart';
+import 'package:book_my_clinic/services/doctor_service.dart';
+import 'package:book_my_clinic/services/patient_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -10,13 +14,21 @@ import 'test_helpers.mocks.dart';
   MockSpec<NavigationService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
-  // @stacked-mock-spec
+  MockSpec<AuthenticationService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<AppointmentService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<DoctorService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<PatientService>(onMissingStub: OnMissingStub.returnDefault),
+// @stacked-mock-spec
 ])
 void registerServices() {
   getAndRegisterNavigationService();
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
-  // @stacked-mock-register
+  getAndRegisterAuthenticationService();
+  getAndRegisterAppointmentService();
+  getAndRegisterDoctorService();
+  getAndRegisterPatientService();
+// @stacked-mock-register
 }
 
 MockNavigationService getAndRegisterNavigationService() {
@@ -69,6 +81,33 @@ MockDialogService getAndRegisterDialogService() {
   return service;
 }
 
+MockAuthenticationService getAndRegisterAuthenticationService() {
+  _removeRegistrationIfExists<AuthenticationService>();
+  final service = MockAuthenticationService();
+  locator.registerSingleton<AuthenticationService>(service);
+  return service;
+}
+
+MockAppointmentService getAndRegisterAppointmentService() {
+  _removeRegistrationIfExists<AppointmentService>();
+  final service = MockAppointmentService();
+  locator.registerSingleton<AppointmentService>(service);
+  return service;
+}
+
+MockDoctorService getAndRegisterDoctorService() {
+  _removeRegistrationIfExists<DoctorService>();
+  final service = MockDoctorService();
+  locator.registerSingleton<DoctorService>(service);
+  return service;
+}
+
+MockPatientService getAndRegisterPatientService() {
+  _removeRegistrationIfExists<PatientService>();
+  final service = MockPatientService();
+  locator.registerSingleton<PatientService>(service);
+  return service;
+}
 // @stacked-mock-create
 
 void _removeRegistrationIfExists<T extends Object>() {

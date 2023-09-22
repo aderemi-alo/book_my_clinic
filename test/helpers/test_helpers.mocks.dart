@@ -6,6 +6,10 @@
 import 'dart:async' as _i4;
 import 'dart:ui' as _i5;
 
+import 'package:book_my_clinic/services/appointment_service.dart' as _i7;
+import 'package:book_my_clinic/services/authentication_service.dart' as _i6;
+import 'package:book_my_clinic/services/doctor_service.dart' as _i8;
+import 'package:book_my_clinic/services/patient_service.dart' as _i9;
 import 'package:flutter/material.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i2;
@@ -627,3 +631,25 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
         returnValueForMissingStub: null,
       );
 }
+
+/// A class which mocks [AuthenticationService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAuthenticationService extends _i1.Mock
+    implements _i6.AuthenticationService {}
+
+/// A class which mocks [AppointmentService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAppointmentService extends _i1.Mock
+    implements _i7.AppointmentService {}
+
+/// A class which mocks [DoctorService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockDoctorService extends _i1.Mock implements _i8.DoctorService {}
+
+/// A class which mocks [PatientService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPatientService extends _i1.Mock implements _i9.PatientService {}
