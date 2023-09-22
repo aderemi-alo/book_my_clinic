@@ -9,6 +9,7 @@ import 'package:book_my_clinic/services/authentication_service.dart';
 import 'package:book_my_clinic/services/appointment_service.dart';
 import 'package:book_my_clinic/services/doctor_service.dart';
 import 'package:book_my_clinic/services/patient_service.dart';
+import 'package:book_my_clinic/ui/views/doctors/doctor_dashboard/doctor_dashboard_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -16,6 +17,7 @@ import 'package:book_my_clinic/services/patient_service.dart';
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),
     MaterialRoute(page: AuthenticationView),
+    MaterialRoute(page: DoctorDashboardView),
 // @stacked-route
   ],
   dependencies: [
