@@ -95,21 +95,27 @@ class SignUpView extends StackedView<SignUpViewModel> with $SignUpView {
                 ),
               ),
               ElevatedButton(
-                  onPressed: () => viewModel.role == "patient"
-                      ? viewModel.signUp(
-                          email: emailController.text,
-                          password: passwordController.text,
-                          name: nameController.text,
-                          phoneNumber: phoneNumberController.text)
-                      : viewModel.signUp(
-                          email: emailController.text,
-                          password: passwordController.text,
-                          name: nameController.text,
-                          phoneNumber: phoneNumberController.text,
-                          specialties: specialitiesController.text,
-                          hospital: hospitalController.text,
-                          hospitalAddress: hospitalAddressController.text),
-                  child: Text("Sign Up")),
+                onPressed: () => viewModel.role == "patient"
+                    ? viewModel.signUp(
+                        email: emailController.text,
+                        password: passwordController.text,
+                        name: nameController.text,
+                        phoneNumber: phoneNumberController.text)
+                    : viewModel.signUp(
+                        email: emailController.text,
+                        password: passwordController.text,
+                        name: nameController.text,
+                        phoneNumber: phoneNumberController.text,
+                        specialties: specialitiesController.text,
+                        hospital: hospitalController.text,
+                        hospitalAddress: hospitalAddressController.text),
+                child: const Text("Sign Up"),
+              ),
+              verticalSpaceMedium,
+              TextButton(
+                onPressed: viewModel.navigateToLogin,
+                child: const Text("Already have an account? Login"),
+              )
             ],
           ),
         ),

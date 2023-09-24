@@ -70,6 +70,10 @@ class SignUpViewModel extends FormViewModel {
     this.role = role;
     rebuildUi();
   }
+
+  void navigateToLogin() {
+    _navigationService.navigateToLoginView();
+  }
 }
 
 // class SignUpValidators {
