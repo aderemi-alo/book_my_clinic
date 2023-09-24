@@ -4,7 +4,7 @@ import '../models/result.dart'; // Ensure the path is correct
 
 class DoctorService {
   final CollectionReference _doctors =
-      FirebaseFirestore.instance.collection('doctors');
+      FirebaseFirestore.instance.collection('Doctors');
 
   Doctor? _currentDoctor;
 
@@ -12,16 +12,16 @@ class DoctorService {
 
   Future<Result<void>> createDoctor(Doctor doctor) async {
     try {
-      await _doctors.add(doctor.toMap());
+      await _doctors.doc(doctor.uid).set(doctor.toMap());
       return Result.success(null);
     } catch (e) {
       return Result.error(e.toString());
     }
   }
 
-  Future<Result<Doctor>> getDoctor(String id) async {
+  Future<Result<Doctor>> getDoctor(String uid) async {
     try {
-      DocumentSnapshot doc = await _doctors.doc(id).get();
+      DocumentSnapshot doc = await _doctors.doc(uid).get();
       _currentDoctor = Doctor.fromMap(doc.data() as Map<String, dynamic>);
       return Result.success(_currentDoctor!);
     } catch (e) {
@@ -29,18 +29,18 @@ class DoctorService {
     }
   }
 
-  Future<Result<void>> updateDoctor(String id, Doctor doctor) async {
+  Future<Result<void>> updateDoctor(String uid, Doctor doctor) async {
     try {
-      await _doctors.doc(id).update(doctor.toMap());
+      await _doctors.doc(uid).update(doctor.toMap());
       return Result.success(null);
     } catch (e) {
       return Result.error(e.toString());
     }
   }
 
-  Future<Result<void>> deleteDoctor(String id) async {
+  Future<Result<void>> deleteDoctor(String uid) async {
     try {
-      await _doctors.doc(id).delete();
+      await _doctors.doc(uid).delete();
       return Result.success(null);
     } catch (e) {
       return Result.error(e.toString());

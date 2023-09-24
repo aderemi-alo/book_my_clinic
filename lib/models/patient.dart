@@ -3,8 +3,6 @@ class Patient {
   final String name;
   final String email;
   final String phoneNumber;
-  final int age;
-  final String sex;
   final List appointmentIDs;
 
   Patient({
@@ -12,8 +10,6 @@ class Patient {
     required this.name,
     required this.email,
     required this.phoneNumber,
-    required this.age,
-    required this.sex,
     required this.appointmentIDs,
   });
 
@@ -23,8 +19,6 @@ class Patient {
         name = map['name'],
         email = map['email'],
         phoneNumber = map['phoneNumber'],
-        age = map['age'],
-        sex = map['sex'],
         appointmentIDs = map['appointmentIDs'];
 
   // Converts Patient object to Firestore Map
@@ -34,8 +28,6 @@ class Patient {
       'name': name,
       'email': email,
       'phoneNumber': phoneNumber,
-      'age': age,
-      'sex': sex,
       'appointmentIDs': appointmentIDs
     };
   }

@@ -7,6 +7,7 @@ import 'dart:async' as _i5;
 import 'dart:ui' as _i6;
 
 import 'package:book_my_clinic/models/doctor.dart' as _i10;
+import 'package:book_my_clinic/models/patient.dart' as _i12;
 import 'package:book_my_clinic/models/result.dart' as _i2;
 import 'package:book_my_clinic/services/appointment_service.dart' as _i8;
 import 'package:book_my_clinic/services/authentication_service.dart' as _i7;
@@ -787,18 +788,18 @@ class MockDoctorService extends _i1.Mock implements _i9.DoctorService {
         )),
       ) as _i5.Future<_i2.Result<void>>);
   @override
-  _i5.Future<_i2.Result<_i10.Doctor>> getDoctor(String? id) =>
+  _i5.Future<_i2.Result<_i10.Doctor>> getDoctor(String? uid) =>
       (super.noSuchMethod(
         Invocation.method(
           #getDoctor,
-          [id],
+          [uid],
         ),
         returnValue: _i5.Future<_i2.Result<_i10.Doctor>>.value(
             _FakeResult_0<_i10.Doctor>(
           this,
           Invocation.method(
             #getDoctor,
-            [id],
+            [uid],
           ),
         )),
         returnValueForMissingStub: _i5.Future<_i2.Result<_i10.Doctor>>.value(
@@ -806,20 +807,20 @@ class MockDoctorService extends _i1.Mock implements _i9.DoctorService {
           this,
           Invocation.method(
             #getDoctor,
-            [id],
+            [uid],
           ),
         )),
       ) as _i5.Future<_i2.Result<_i10.Doctor>>);
   @override
   _i5.Future<_i2.Result<void>> updateDoctor(
-    String? id,
+    String? uid,
     _i10.Doctor? doctor,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateDoctor,
           [
-            id,
+            uid,
             doctor,
           ],
         ),
@@ -828,7 +829,7 @@ class MockDoctorService extends _i1.Mock implements _i9.DoctorService {
           Invocation.method(
             #updateDoctor,
             [
-              id,
+              uid,
               doctor,
             ],
           ),
@@ -839,23 +840,23 @@ class MockDoctorService extends _i1.Mock implements _i9.DoctorService {
           Invocation.method(
             #updateDoctor,
             [
-              id,
+              uid,
               doctor,
             ],
           ),
         )),
       ) as _i5.Future<_i2.Result<void>>);
   @override
-  _i5.Future<_i2.Result<void>> deleteDoctor(String? id) => (super.noSuchMethod(
+  _i5.Future<_i2.Result<void>> deleteDoctor(String? uid) => (super.noSuchMethod(
         Invocation.method(
           #deleteDoctor,
-          [id],
+          [uid],
         ),
         returnValue: _i5.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
           this,
           Invocation.method(
             #deleteDoctor,
-            [id],
+            [uid],
           ),
         )),
         returnValueForMissingStub:
@@ -863,7 +864,7 @@ class MockDoctorService extends _i1.Mock implements _i9.DoctorService {
           this,
           Invocation.method(
             #deleteDoctor,
-            [id],
+            [uid],
           ),
         )),
       ) as _i5.Future<_i2.Result<void>>);
@@ -898,4 +899,118 @@ class MockDoctorService extends _i1.Mock implements _i9.DoctorService {
 /// A class which mocks [PatientService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPatientService extends _i1.Mock implements _i11.PatientService {}
+class MockPatientService extends _i1.Mock implements _i11.PatientService {
+  @override
+  void setCurrentPatient(_i12.Patient? patient) => super.noSuchMethod(
+        Invocation.method(
+          #setCurrentPatient,
+          [patient],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  _i5.Future<_i2.Result<void>> createPatient(_i12.Patient? patient) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createPatient,
+          [patient],
+        ),
+        returnValue: _i5.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
+          this,
+          Invocation.method(
+            #createPatient,
+            [patient],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
+          this,
+          Invocation.method(
+            #createPatient,
+            [patient],
+          ),
+        )),
+      ) as _i5.Future<_i2.Result<void>>);
+  @override
+  _i5.Future<_i2.Result<_i12.Patient>> getPatient(String? uid) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getPatient,
+          [uid],
+        ),
+        returnValue: _i5.Future<_i2.Result<_i12.Patient>>.value(
+            _FakeResult_0<_i12.Patient>(
+          this,
+          Invocation.method(
+            #getPatient,
+            [uid],
+          ),
+        )),
+        returnValueForMissingStub: _i5.Future<_i2.Result<_i12.Patient>>.value(
+            _FakeResult_0<_i12.Patient>(
+          this,
+          Invocation.method(
+            #getPatient,
+            [uid],
+          ),
+        )),
+      ) as _i5.Future<_i2.Result<_i12.Patient>>);
+  @override
+  _i5.Future<_i2.Result<void>> updatePatient(
+    String? uid,
+    _i12.Patient? patient,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updatePatient,
+          [
+            uid,
+            patient,
+          ],
+        ),
+        returnValue: _i5.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
+          this,
+          Invocation.method(
+            #updatePatient,
+            [
+              uid,
+              patient,
+            ],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
+          this,
+          Invocation.method(
+            #updatePatient,
+            [
+              uid,
+              patient,
+            ],
+          ),
+        )),
+      ) as _i5.Future<_i2.Result<void>>);
+  @override
+  _i5.Future<_i2.Result<void>> deletePatient(String? uid) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deletePatient,
+          [uid],
+        ),
+        returnValue: _i5.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
+          this,
+          Invocation.method(
+            #deletePatient,
+            [uid],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i5.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
+          this,
+          Invocation.method(
+            #deletePatient,
+            [uid],
+          ),
+        )),
+      ) as _i5.Future<_i2.Result<void>>);
+}
