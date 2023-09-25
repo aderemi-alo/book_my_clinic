@@ -9,10 +9,12 @@ import 'package:stacked_services/stacked_services.dart';
 import 'app.locator.dart';
 import '../ui/dialogs/book_appointment/book_appointment_dialog.dart';
 import '../ui/dialogs/info_alert/info_alert_dialog.dart';
+import '../ui/dialogs/manage_appointment/manage_appointment_dialog.dart';
 
 enum DialogType {
   infoAlert,
   bookAppointment,
+  manageAppointment,
 }
 
 void setupDialogUi() {
@@ -23,6 +25,8 @@ void setupDialogUi() {
         InfoAlertDialog(request: request, completer: completer),
     DialogType.bookAppointment: (context, request, completer) =>
         BookAppointmentDialog(request: request, completer: completer),
+    DialogType.manageAppointment: (context, request, completer) =>
+        ManageAppointmentDialog(request: request, completer: completer),
   };
 
   dialogService.registerCustomDialogBuilders(builders);

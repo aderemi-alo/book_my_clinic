@@ -6,13 +6,14 @@
 import 'dart:async' as _i6;
 import 'dart:ui' as _i7;
 
-import 'package:book_my_clinic/models/doctor.dart' as _i11;
-import 'package:book_my_clinic/models/patient.dart' as _i13;
+import 'package:book_my_clinic/models/appointment.dart' as _i10;
+import 'package:book_my_clinic/models/doctor.dart' as _i12;
+import 'package:book_my_clinic/models/patient.dart' as _i14;
 import 'package:book_my_clinic/models/result.dart' as _i2;
 import 'package:book_my_clinic/services/appointment_service.dart' as _i9;
 import 'package:book_my_clinic/services/authentication_service.dart' as _i8;
-import 'package:book_my_clinic/services/doctor_service.dart' as _i10;
-import 'package:book_my_clinic/services/patient_service.dart' as _i12;
+import 'package:book_my_clinic/services/doctor_service.dart' as _i11;
+import 'package:book_my_clinic/services/patient_service.dart' as _i13;
 import 'package:flutter/material.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i4;
@@ -906,14 +907,54 @@ class MockAppointmentService extends _i1.Mock
           ),
         )),
       ) as _i6.Future<_i2.Result<void>>);
+  @override
+  _i6.Future<_i2.Result<List<_i10.Appointment>>> fetchAppointments({
+    String? doctorID,
+    String? patientID,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchAppointments,
+          [],
+          {
+            #doctorID: doctorID,
+            #patientID: patientID,
+          },
+        ),
+        returnValue: _i6.Future<_i2.Result<List<_i10.Appointment>>>.value(
+            _FakeResult_0<List<_i10.Appointment>>(
+          this,
+          Invocation.method(
+            #fetchAppointments,
+            [],
+            {
+              #doctorID: doctorID,
+              #patientID: patientID,
+            },
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i2.Result<List<_i10.Appointment>>>.value(
+                _FakeResult_0<List<_i10.Appointment>>(
+          this,
+          Invocation.method(
+            #fetchAppointments,
+            [],
+            {
+              #doctorID: doctorID,
+              #patientID: patientID,
+            },
+          ),
+        )),
+      ) as _i6.Future<_i2.Result<List<_i10.Appointment>>>);
 }
 
 /// A class which mocks [DoctorService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDoctorService extends _i1.Mock implements _i10.DoctorService {
+class MockDoctorService extends _i1.Mock implements _i11.DoctorService {
   @override
-  _i6.Future<_i2.Result<void>> createDoctor(_i11.Doctor? doctor) =>
+  _i6.Future<_i2.Result<void>> createDoctor(_i12.Doctor? doctor) =>
       (super.noSuchMethod(
         Invocation.method(
           #createDoctor,
@@ -936,33 +977,33 @@ class MockDoctorService extends _i1.Mock implements _i10.DoctorService {
         )),
       ) as _i6.Future<_i2.Result<void>>);
   @override
-  _i6.Future<_i2.Result<_i11.Doctor>> getDoctor(String? uid) =>
+  _i6.Future<_i2.Result<_i12.Doctor>> getDoctor(String? uid) =>
       (super.noSuchMethod(
         Invocation.method(
           #getDoctor,
           [uid],
         ),
-        returnValue: _i6.Future<_i2.Result<_i11.Doctor>>.value(
-            _FakeResult_0<_i11.Doctor>(
+        returnValue: _i6.Future<_i2.Result<_i12.Doctor>>.value(
+            _FakeResult_0<_i12.Doctor>(
           this,
           Invocation.method(
             #getDoctor,
             [uid],
           ),
         )),
-        returnValueForMissingStub: _i6.Future<_i2.Result<_i11.Doctor>>.value(
-            _FakeResult_0<_i11.Doctor>(
+        returnValueForMissingStub: _i6.Future<_i2.Result<_i12.Doctor>>.value(
+            _FakeResult_0<_i12.Doctor>(
           this,
           Invocation.method(
             #getDoctor,
             [uid],
           ),
         )),
-      ) as _i6.Future<_i2.Result<_i11.Doctor>>);
+      ) as _i6.Future<_i2.Result<_i12.Doctor>>);
   @override
   _i6.Future<_i2.Result<void>> updateDoctor(
     String? uid,
-    _i11.Doctor? doctor,
+    _i12.Doctor? doctor,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1017,15 +1058,15 @@ class MockDoctorService extends _i1.Mock implements _i10.DoctorService {
         )),
       ) as _i6.Future<_i2.Result<void>>);
   @override
-  _i6.Future<_i2.Result<List<_i11.Doctor>>> searchDoctorBySpeciality(
+  _i6.Future<_i2.Result<List<_i12.Doctor>>> searchDoctorBySpeciality(
           String? speciality) =>
       (super.noSuchMethod(
         Invocation.method(
           #searchDoctorBySpeciality,
           [speciality],
         ),
-        returnValue: _i6.Future<_i2.Result<List<_i11.Doctor>>>.value(
-            _FakeResult_0<List<_i11.Doctor>>(
+        returnValue: _i6.Future<_i2.Result<List<_i12.Doctor>>>.value(
+            _FakeResult_0<List<_i12.Doctor>>(
           this,
           Invocation.method(
             #searchDoctorBySpeciality,
@@ -1033,23 +1074,23 @@ class MockDoctorService extends _i1.Mock implements _i10.DoctorService {
           ),
         )),
         returnValueForMissingStub:
-            _i6.Future<_i2.Result<List<_i11.Doctor>>>.value(
-                _FakeResult_0<List<_i11.Doctor>>(
+            _i6.Future<_i2.Result<List<_i12.Doctor>>>.value(
+                _FakeResult_0<List<_i12.Doctor>>(
           this,
           Invocation.method(
             #searchDoctorBySpeciality,
             [speciality],
           ),
         )),
-      ) as _i6.Future<_i2.Result<List<_i11.Doctor>>>);
+      ) as _i6.Future<_i2.Result<List<_i12.Doctor>>>);
 }
 
 /// A class which mocks [PatientService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPatientService extends _i1.Mock implements _i12.PatientService {
+class MockPatientService extends _i1.Mock implements _i13.PatientService {
   @override
-  void setCurrentPatient(_i13.Patient? patient) => super.noSuchMethod(
+  void setCurrentPatient(_i14.Patient? patient) => super.noSuchMethod(
         Invocation.method(
           #setCurrentPatient,
           [patient],
@@ -1057,7 +1098,7 @@ class MockPatientService extends _i1.Mock implements _i12.PatientService {
         returnValueForMissingStub: null,
       );
   @override
-  _i6.Future<_i2.Result<void>> createPatient(_i13.Patient? patient) =>
+  _i6.Future<_i2.Result<void>> createPatient(_i14.Patient? patient) =>
       (super.noSuchMethod(
         Invocation.method(
           #createPatient,
@@ -1080,33 +1121,33 @@ class MockPatientService extends _i1.Mock implements _i12.PatientService {
         )),
       ) as _i6.Future<_i2.Result<void>>);
   @override
-  _i6.Future<_i2.Result<_i13.Patient>> getPatient(String? uid) =>
+  _i6.Future<_i2.Result<_i14.Patient>> getPatient(String? uid) =>
       (super.noSuchMethod(
         Invocation.method(
           #getPatient,
           [uid],
         ),
-        returnValue: _i6.Future<_i2.Result<_i13.Patient>>.value(
-            _FakeResult_0<_i13.Patient>(
+        returnValue: _i6.Future<_i2.Result<_i14.Patient>>.value(
+            _FakeResult_0<_i14.Patient>(
           this,
           Invocation.method(
             #getPatient,
             [uid],
           ),
         )),
-        returnValueForMissingStub: _i6.Future<_i2.Result<_i13.Patient>>.value(
-            _FakeResult_0<_i13.Patient>(
+        returnValueForMissingStub: _i6.Future<_i2.Result<_i14.Patient>>.value(
+            _FakeResult_0<_i14.Patient>(
           this,
           Invocation.method(
             #getPatient,
             [uid],
           ),
         )),
-      ) as _i6.Future<_i2.Result<_i13.Patient>>);
+      ) as _i6.Future<_i2.Result<_i14.Patient>>);
   @override
   _i6.Future<_i2.Result<void>> updatePatient(
     String? uid,
-    _i13.Patient? patient,
+    _i14.Patient? patient,
   ) =>
       (super.noSuchMethod(
         Invocation.method(

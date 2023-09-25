@@ -13,6 +13,7 @@ import 'package:book_my_clinic/ui/views/authentication/login/login_view.dart';
 import 'package:book_my_clinic/ui/views/authentication/sign_up/sign_up_view.dart';
 import 'package:book_my_clinic/ui/views/patients/patient_dashboard/patient_dashboard_view.dart';
 import 'package:book_my_clinic/ui/dialogs/book_appointment/book_appointment_dialog.dart';
+import 'package:book_my_clinic/ui/dialogs/manage_appointment/manage_appointment_dialog.dart';
 // @stacked-import
 
 @StackedApp(
@@ -42,6 +43,7 @@ import 'package:book_my_clinic/ui/dialogs/book_appointment/book_appointment_dial
   dialogs: [
     StackedDialog(classType: InfoAlertDialog),
     StackedDialog(classType: BookAppointmentDialog),
+    StackedDialog(classType: ManageAppointmentDialog),
 // @stacked-dialog
   ],
 )

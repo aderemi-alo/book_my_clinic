@@ -32,18 +32,12 @@ class AppointmentService {
     }
   }
 
-  Future<Result<void>> acceptAppointment(String appointmentId) async {
+  Future<Result<void>> updateAppointment(
+      {required String appointmentId, required String status}) async {
     try {
-      await _appointments.doc(appointmentId).update({'status': 'accepted'});
-      return Result.success(null);
-    } catch (e) {
-      return Result.error(e.toString());
-    }
-  }
-
-  Future<Result<void>> rejectAppointment(String appointmentId) async {
-    try {
-      await _appointments.doc(appointmentId).update({'status': 'rejected'});
+      await _appointments
+          .doc(appointmentId)
+          .update({'status': status.toLowerCase()});
       return Result.success(null);
     } catch (e) {
       return Result.error(e.toString());
