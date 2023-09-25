@@ -10,11 +10,13 @@ import 'app.locator.dart';
 import '../ui/dialogs/book_appointment/book_appointment_dialog.dart';
 import '../ui/dialogs/info_alert/info_alert_dialog.dart';
 import '../ui/dialogs/manage_appointment/manage_appointment_dialog.dart';
+import '../ui/dialogs/reschedule_appointment/reschedule_appointment_dialog.dart';
 
 enum DialogType {
   infoAlert,
   bookAppointment,
   manageAppointment,
+  rescheduleAppointment,
 }
 
 void setupDialogUi() {
@@ -27,6 +29,8 @@ void setupDialogUi() {
         BookAppointmentDialog(request: request, completer: completer),
     DialogType.manageAppointment: (context, request, completer) =>
         ManageAppointmentDialog(request: request, completer: completer),
+    DialogType.rescheduleAppointment: (context, request, completer) =>
+        RescheduleAppointmentDialog(request: request, completer: completer),
   };
 
   dialogService.registerCustomDialogBuilders(builders);

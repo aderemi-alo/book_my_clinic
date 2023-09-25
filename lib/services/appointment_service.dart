@@ -45,7 +45,7 @@ class AppointmentService {
   }
 
   Future<Result<void>> rescheduleAppointment(
-      String appointmentId, DateTime newDateTime) async {
+      {required String appointmentId, required DateTime newDateTime}) async {
     try {
       await _appointments.doc(appointmentId).update({'dateTime': newDateTime});
       return Result.success(null);

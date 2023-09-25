@@ -55,6 +55,33 @@ class DoctorDashboardView extends StackedView<DoctorDashboardViewModel> {
                 ],
               ),
             ),
+            Text("Upcoming Appointments"),
+            Container(
+              height: 100,
+              child: ListView.builder(
+                itemCount: viewModel.upcomingAppointments?.length ?? 0,
+                itemBuilder: (context, index) {
+                  var upcomingAppointment =
+                      viewModel.upcomingAppointments![index];
+                  var patient =
+                      viewModel.patientsData[upcomingAppointment.patientId];
+                  print(patient);
+                  String formattedTime = DateFormat('d MMMM, h:mm a')
+                      .format(upcomingAppointment.dateTime);
+                  print(patient!.name);
+                  print(patient.appointmentIDs);
+                  return ListTile(
+                    title: Text(patient.name + ", " + formattedTime),
+                    trailing: TextButton(
+                        onPressed: () => viewModel.onRescheduleAppointmentTap(
+                              upcomingAppointment,
+                              patient,
+                            ),
+                        child: Text("Reschedule")),
+                  );
+                },
+              ),
+            ),
           ]),
         ),
       ),

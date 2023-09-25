@@ -827,72 +827,66 @@ class MockAppointmentService extends _i1.Mock
         )),
       ) as _i6.Future<_i2.Result<void>>);
   @override
-  _i6.Future<_i2.Result<void>> acceptAppointment(String? appointmentId) =>
+  _i6.Future<_i2.Result<void>> updateAppointment({
+    required String? appointmentId,
+    required String? status,
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
-          #acceptAppointment,
-          [appointmentId],
+          #updateAppointment,
+          [],
+          {
+            #appointmentId: appointmentId,
+            #status: status,
+          },
         ),
         returnValue: _i6.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
           this,
           Invocation.method(
-            #acceptAppointment,
-            [appointmentId],
+            #updateAppointment,
+            [],
+            {
+              #appointmentId: appointmentId,
+              #status: status,
+            },
           ),
         )),
         returnValueForMissingStub:
             _i6.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
           this,
           Invocation.method(
-            #acceptAppointment,
-            [appointmentId],
+            #updateAppointment,
+            [],
+            {
+              #appointmentId: appointmentId,
+              #status: status,
+            },
           ),
         )),
       ) as _i6.Future<_i2.Result<void>>);
   @override
-  _i6.Future<_i2.Result<void>> rejectAppointment(String? appointmentId) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #rejectAppointment,
-          [appointmentId],
-        ),
-        returnValue: _i6.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
-          this,
-          Invocation.method(
-            #rejectAppointment,
-            [appointmentId],
-          ),
-        )),
-        returnValueForMissingStub:
-            _i6.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
-          this,
-          Invocation.method(
-            #rejectAppointment,
-            [appointmentId],
-          ),
-        )),
-      ) as _i6.Future<_i2.Result<void>>);
-  @override
-  _i6.Future<_i2.Result<void>> rescheduleAppointment(
-    String? appointmentId,
-    DateTime? newDateTime,
-  ) =>
+  _i6.Future<_i2.Result<void>> rescheduleAppointment({
+    required String? appointmentId,
+    required DateTime? newDateTime,
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
           #rescheduleAppointment,
-          [
-            appointmentId,
-            newDateTime,
-          ],
+          [],
+          {
+            #appointmentId: appointmentId,
+            #newDateTime: newDateTime,
+          },
         ),
         returnValue: _i6.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
           this,
           Invocation.method(
             #rescheduleAppointment,
-            [
-              appointmentId,
-              newDateTime,
-            ],
+            [],
+            {
+              #appointmentId: appointmentId,
+              #newDateTime: newDateTime,
+            },
           ),
         )),
         returnValueForMissingStub:
@@ -900,10 +894,11 @@ class MockAppointmentService extends _i1.Mock
           this,
           Invocation.method(
             #rescheduleAppointment,
-            [
-              appointmentId,
-              newDateTime,
-            ],
+            [],
+            {
+              #appointmentId: appointmentId,
+              #newDateTime: newDateTime,
+            },
           ),
         )),
       ) as _i6.Future<_i2.Result<void>>);

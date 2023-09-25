@@ -123,4 +123,25 @@ class DoctorDashboardViewModel extends BaseViewModel {
     }
     rebuildUi();
   }
+
+  Future<void> onRescheduleAppointmentTap(
+      Appointment appointment, Patient patient) async {
+    var response = await _dialogService.showCustomDialog(
+      variant: DialogType.rescheduleAppointment,
+      data: patient,
+    );
+    if (response!.confirmed && response.data is DateTime) {
+      DateTime selectedDate = response.data;
+      var result = await _appointmentService.rescheduleAppointment(
+          appointmentId: appointment.id, newDateTime: selectedDate);
+      if (!result.isSuccess) {
+        print(result.error);
+      }
+    }
+    upcomingAppointments!.clear();
+    appointmentRequests!.clear();
+    pastAppointments!.clear();
+    await fetchDoctorAppointments();
+    rebuildUi();
+  }
 }
