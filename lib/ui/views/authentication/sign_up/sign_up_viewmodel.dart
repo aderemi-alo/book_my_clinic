@@ -44,7 +44,10 @@ class SignUpViewModel extends FormViewModel {
           email: email,
           phoneNumber: phoneNumber,
           appointmentIDs: [],
-          specialties: specialties!.split(",").map((s) => s.trim()).toList(),
+          specialties: specialties!
+              .split(",")
+              .map((s) => s.trim().toLowerCase())
+              .toList(),
           hospital: hospital!,
           hospitalAddress: hospitalAddress!,
         );

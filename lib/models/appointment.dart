@@ -6,10 +6,6 @@ class Appointment {
   final String doctorId;
   final String status;
   final DateTime dateTime;
-  final int duration;
-  final bool wasPatientPresent;
-  final bool wasDoctorPresent;
-  // ... potentially other fields
 
   Appointment({
     required this.id,
@@ -17,13 +13,8 @@ class Appointment {
     required this.doctorId,
     required this.status,
     required this.dateTime,
-    required this.duration,
-    required this.wasPatientPresent,
-    required this.wasDoctorPresent,
-    // ... potentially other fields
   });
 
-  // Converts Firestore Map to Appointment object
   static Appointment fromMap(Map<String, dynamic> map) {
     return Appointment(
       id: map['id'],
@@ -31,14 +22,9 @@ class Appointment {
       doctorId: map['doctorId'],
       status: map['status'],
       dateTime: (map['dateTime'] as Timestamp).toDate(),
-      duration: map['duration'],
-      wasPatientPresent: map['wasPatientPresent'],
-      wasDoctorPresent: map['wasDoctorPresent'],
-      // ... potentially other fields
     );
   }
 
-  // Converts Appointment object to Firestore Map
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -46,10 +32,6 @@ class Appointment {
       'doctorId': doctorId,
       'status': status,
       'dateTime': dateTime,
-      'duration': duration,
-      'wasPatientPresent': wasPatientPresent,
-      'wasDoctorPresent': wasDoctorPresent,
-      // ... potentially other fields
     };
   }
 }

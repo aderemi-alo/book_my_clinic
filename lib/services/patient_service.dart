@@ -8,8 +8,6 @@ class PatientService {
 
   Patient? _currentPatient;
 
-  Patient? getCurrentPatient() => _currentPatient;
-
   void setCurrentPatient(Patient? patient) {
     _currentPatient = patient;
   }
