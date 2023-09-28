@@ -1,7 +1,7 @@
 import 'package:book_my_clinic/models/appointment.dart';
+import 'package:book_my_clinic/ui/common/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'package:book_my_clinic/app/app.dialogs.dart';
-import 'package:flutter/material.dart';
 import 'package:book_my_clinic/services/authentication_service.dart';
 import 'package:book_my_clinic/services/doctor_service.dart';
 import 'package:book_my_clinic/services/patient_service.dart';
@@ -11,7 +11,9 @@ import 'package:book_my_clinic/models/patient.dart';
 import 'package:book_my_clinic/models/doctor.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class PatientDashboardViewModel extends BaseViewModel {
+enum DashboardView { upcoming, past, profile, book }
+
+class PatientDashboardViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _patientService = locator<PatientService>();
   final _doctorService = locator<DoctorService>();
@@ -40,13 +42,32 @@ class PatientDashboardViewModel extends BaseViewModel {
   List<Appointment>? _pastAppointments = [];
   List<Appointment>? get pastAppointments => _pastAppointments;
 
-  void _showError(String? message) {
-    final context = StackedService.navigatorKey!.currentContext;
-    if (context != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(message!)),
-      );
-    }
+  DashboardView _currentView = DashboardView.upcoming;
+  DashboardView get currentView => _currentView;
+
+  bool _isMenuExpanded = true;
+  bool get isMenuExpanded => _isMenuExpanded;
+
+  bool isEditing = false;
+
+  void toggleEditing() {
+    isEditing = !isEditing;
+    rebuildUi();
+  }
+
+  void toggleMenu() {
+    _isMenuExpanded = !_isMenuExpanded;
+    rebuildUi();
+  }
+
+  void setCurrentView(DashboardView view) {
+    _currentView = view;
+    rebuildUi();
+  }
+
+  Future logout() async {
+    await _authenticationService.signOut();
+    _navigationService.clearStackAndShow('/login-view');
   }
 
   Future fetchPatientData() async {
@@ -58,46 +79,56 @@ class PatientDashboardViewModel extends BaseViewModel {
       _patient = result.value;
       rebuildUi();
     } else {
-      _showError(result.error);
+      showError(result.error);
     }
+  }
+
+  Future updateProfile(Patient patient) async {
+    var result = await _patientService.updatePatient(_patient!.uid, patient);
+    if (result.isSuccess) {
+      await fetchPatientData();
+    } else {
+      showError(result.error);
+    }
+    toggleEditing();
+    rebuildUi();
   }
 
   Future searchForDoctorBySpeciality(String speciality) async {
     var result = await _doctorService.searchDoctorBySpeciality(speciality);
     if (result.isSuccess) {
       _searchResults = result.value;
-      print(_searchResults);
     } else {
-      print(result.error);
+      showError(result.error);
     }
     rebuildUi();
   }
 
   Future fetchDoctorData(String doctorID) async {
     var result = await _doctorService.getDoctor(doctorID);
-    print(result.value);
     if (result.isSuccess) {
       _appointmentDoctor = result.value;
     } else {
-      print(result.error);
+      showError(result.error);
     }
   }
 
   Future fetchPatientAppointments() async {
     var result =
         await _appointmentService.fetchAppointments(patientID: _patient!.uid);
-    print(result.value);
 
     if (result.isSuccess) {
       _appointments = result.value;
       for (var appointment in _appointments!) {
-        if (appointment.dateTime.isAfter(DateTime.now())) {
+        if (appointment.dateTime.isAfter(DateTime.now()) &&
+            appointment.status == "accepted") {
           _upcomingAppointments.add(appointment);
           await fetchDoctorData(appointment.doctorId);
           if (_appointmentDoctor != null) {
             _doctorsData[appointment.doctorId] = _appointmentDoctor!;
           }
-        } else {
+        } else if (appointment.dateTime.isBefore(DateTime.now()) &&
+            appointment.status == "accepted") {
           _pastAppointments!.add(appointment);
           await fetchDoctorData(appointment.doctorId);
           if (_appointmentDoctor != null) {
@@ -110,7 +141,7 @@ class PatientDashboardViewModel extends BaseViewModel {
         _pastAppointments!.sort((a, b) => b.dateTime.compareTo(a.dateTime));
       }
     } else {
-      print(result.error);
+      showError(result.error);
     }
     setBusy(false);
   }
@@ -127,7 +158,7 @@ class PatientDashboardViewModel extends BaseViewModel {
           await _appointmentService.createAppointment(doctor.uid, selectedDate);
       if (result.isSuccess) {
       } else {
-        print(result.error);
+        showError(result.error);
       }
     }
   }

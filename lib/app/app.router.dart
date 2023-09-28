@@ -104,7 +104,7 @@ class StackedRouter extends _i1.RouterBase {
     },
     _i7.PatientDashboardView: (data) {
       return _i8.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i7.PatientDashboardView(),
+        builder: (context) => _i7.PatientDashboardView(),
         settings: data,
       );
     },

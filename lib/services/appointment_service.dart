@@ -32,6 +32,16 @@ class AppointmentService {
     }
   }
 
+  Future<Result<void>> cancelAppointment(
+      {required String appointmentId}) async {
+    try {
+      await _appointments.doc(appointmentId).delete();
+      return Result.success(null);
+    } catch (e) {
+      return Result.error(e.toString());
+    }
+  }
+
   Future<Result<void>> updateAppointment(
       {required String appointmentId, required String status}) async {
     try {
@@ -73,6 +83,4 @@ class AppointmentService {
       return Result.error(e.toString());
     }
   }
-
-  // Future<Result<Appointment>> getAppointment() {}
 }

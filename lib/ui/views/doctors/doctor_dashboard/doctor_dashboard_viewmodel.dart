@@ -10,8 +10,11 @@ import 'package:book_my_clinic/models/patient.dart';
 import 'package:book_my_clinic/models/doctor.dart';
 import 'package:book_my_clinic/models/custom_dialog_data.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:book_my_clinic/ui/common/widgets.dart';
 
-class DoctorDashboardViewModel extends BaseViewModel {
+enum DashboardView { upcoming, past, requests, profile }
+
+class DoctorDashboardViewModel extends FormViewModel {
   final _navigationService = locator<NavigationService>();
   final _patientService = locator<PatientService>();
   final _doctorService = locator<DoctorService>();
@@ -40,6 +43,40 @@ class DoctorDashboardViewModel extends BaseViewModel {
   final List<Appointment> _appointmentRequests = [];
   List<Appointment>? get appointmentRequests => _appointmentRequests;
 
+  DashboardView _currentView = DashboardView.upcoming;
+  DashboardView get currentView => _currentView;
+
+  bool _isMenuExpanded = true;
+  bool get isMenuExpanded => _isMenuExpanded;
+
+  bool isEditing = false;
+
+  void toggleEditing() {
+    isEditing = !isEditing;
+    rebuildUi();
+  }
+
+  void toggleMenu() {
+    _isMenuExpanded = !_isMenuExpanded;
+    rebuildUi();
+  }
+
+  void setCurrentView(DashboardView view) {
+    _currentView = view;
+    rebuildUi();
+  }
+
+  Future updateProfile(Doctor doctor) async {
+    var result = await _doctorService.updateDoctor(_doctor!.uid, doctor);
+    if (result.isSuccess) {
+      await fetchDoctorData();
+    } else {
+      showError(result.error);
+    }
+    toggleEditing();
+    rebuildUi();
+  }
+
   Future fetchDoctorData() async {
     setBusy(true);
 
@@ -49,8 +86,13 @@ class DoctorDashboardViewModel extends BaseViewModel {
       _doctor = result.value;
       rebuildUi();
     } else {
-      print(result.error);
+      showError(result.error);
     }
+  }
+
+  Future logout() async {
+    await _authenticationService.signOut();
+    _navigationService.clearStackAndShow('/login-view');
   }
 
   Future fetchPatientData(String patientID) async {
@@ -58,7 +100,7 @@ class DoctorDashboardViewModel extends BaseViewModel {
     if (result.isSuccess) {
       _appointmentPatient = result.value;
     } else {
-      print(result.error);
+      showError(result.error);
     }
   }
 
@@ -95,7 +137,7 @@ class DoctorDashboardViewModel extends BaseViewModel {
         _appointmentRequests.sort((a, b) => a.dateTime.compareTo(b.dateTime));
       }
     } else {
-      print(result.error);
+      showError(result.error);
     }
     setBusy(false);
   }
@@ -111,14 +153,19 @@ class DoctorDashboardViewModel extends BaseViewModel {
     if (response!.confirmed && response.data is String) {
       String status = response.data;
       print(response.data);
-      var result = await _appointmentService.updateAppointment(
-        appointmentId: appointment.id,
-        status: status,
-      );
+
+      var result = status == "accepted"
+          ? await _appointmentService.updateAppointment(
+              appointmentId: appointment.id,
+              status: status,
+            )
+          : await _appointmentService.cancelAppointment(
+              appointmentId: appointment.id);
+
       if (result.isSuccess) {
         _appointmentRequests.remove(appointment);
       } else {
-        print(result.error);
+        showError(result.error);
       }
     }
     rebuildUi();
@@ -135,7 +182,7 @@ class DoctorDashboardViewModel extends BaseViewModel {
       var result = await _appointmentService.rescheduleAppointment(
           appointmentId: appointment.id, newDateTime: selectedDate);
       if (!result.isSuccess) {
-        print(result.error);
+        showError(result.error);
       }
     }
     upcomingAppointments!.clear();

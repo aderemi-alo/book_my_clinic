@@ -14,8 +14,11 @@ class AuthenticationService {
           email: email, password: password);
       return Result.success(null);
     } on FirebaseAuthException catch (e) {
+      print(e.code);
+      print(e.toString());
       return Result.error(_handleFirebaseAuthException(e));
     } catch (e) {
+      print("Random error");
       return Result.error(e.toString());
     }
   }
@@ -57,6 +60,7 @@ class AuthenticationService {
         return 'Password should be at least 6 characters.';
       case 'user-disabled':
         return 'The user account has been disabled.';
+
       default:
         return e.message ?? 'An error occurred. Please try again later.';
     }

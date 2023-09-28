@@ -7,13 +7,14 @@ import 'package:book_my_clinic/models/patient.dart';
 import 'package:book_my_clinic/models/doctor.dart';
 import 'package:book_my_clinic/services/patient_service.dart';
 import 'package:book_my_clinic/services/doctor_service.dart';
+import 'package:book_my_clinic/ui/common/widgets.dart';
 
 class SignUpViewModel extends FormViewModel {
   final _authenticationService = locator<AuthenticationService>();
   final _navigationService = locator<NavigationService>();
   final _patientService = locator<PatientService>();
   final _doctorService = locator<DoctorService>();
-  String? role;
+  String role = "patient";
 
   void signUp({
     required String email,
@@ -55,7 +56,7 @@ class SignUpViewModel extends FormViewModel {
       }
 
       if (!result.isSuccess) {
-        print(result.error);
+        showError(result.error);
         return;
       }
 
@@ -65,11 +66,11 @@ class SignUpViewModel extends FormViewModel {
         _navigationService.replaceWithDoctorDashboardView();
       }
     } else {
-      print(result.error);
+      showError(result.error);
     }
   }
 
-  void setRole(String? role) {
+  void setRole(String role) {
     this.role = role;
     rebuildUi();
   }
