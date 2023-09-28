@@ -827,6 +827,33 @@ class MockAppointmentService extends _i1.Mock
         )),
       ) as _i6.Future<_i2.Result<void>>);
   @override
+  _i6.Future<_i2.Result<void>> cancelAppointment(
+          {required String? appointmentId}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #cancelAppointment,
+          [],
+          {#appointmentId: appointmentId},
+        ),
+        returnValue: _i6.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
+          this,
+          Invocation.method(
+            #cancelAppointment,
+            [],
+            {#appointmentId: appointmentId},
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i2.Result<void>>.value(_FakeResult_0<void>(
+          this,
+          Invocation.method(
+            #cancelAppointment,
+            [],
+            {#appointmentId: appointmentId},
+          ),
+        )),
+      ) as _i6.Future<_i2.Result<void>>);
+  @override
   _i6.Future<_i2.Result<void>> updateAppointment({
     required String? appointmentId,
     required String? status,

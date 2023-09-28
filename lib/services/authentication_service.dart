@@ -60,6 +60,8 @@ class AuthenticationService {
         return 'Password should be at least 6 characters.';
       case 'user-disabled':
         return 'The user account has been disabled.';
+      case 'invalid-login-credentials':
+        return 'Invalid login credentials.';
 
       default:
         return e.message ?? 'An error occurred. Please try again later.';
