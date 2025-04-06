@@ -1,10 +1,11 @@
+import 'package:book_my_clinic/ui/common/app_colors.dart';
 import 'package:book_my_clinic/ui/common/ui_helpers.dart';
 import 'package:book_my_clinic/ui/common/widgets.dart';
 import 'package:book_my_clinic/ui/views/authentication/login/login_view.form.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked/stacked_annotations.dart';
-import 'package:book_my_clinic/ui/common/app_colors.dart';
+
 import 'login_viewmodel.dart';
 
 @FormView(fields: [
@@ -127,7 +128,7 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                               )
                             : Text("Login"),
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.blue,
+                          backgroundColor: Colors.blue,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -137,7 +138,8 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
                       TextButton(
                         onPressed: viewModel.navigateToSignUp,
                         child: const Text("Don't have an account? Sign Up"),
-                        style: TextButton.styleFrom(primary: Colors.blue),
+                        style:
+                            TextButton.styleFrom(backgroundColor: Colors.blue),
                       )
                     ],
                   ),
